@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { useState } from 'react';
+import Sidebar, { SidebarItem } from './components/Sidebar';
+import { Home, Settings, User } from "lucide-react"; // Import the icons you want to use
+import Searchbar from './components/Searchbar';
+import HomePage from './pages/HomePage';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
+// import { Profile } from './components/Greet';
+// import {Content,BasicTextFields} from './components/Content';
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+// function App() {
+
+
+// const App =()=> {
+//   const [count,setCount] = useState(0);
+
+//   const increment =() =>{
+//     setCount(count+1);
+//   }
+
+//   return (
+//     <div className="flex justify-center items-center h-screen">
+//       <div>
+//         <h1 className="text-center mb-4">{count}</h1>
+//         <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={increment}>
+//           Click
+//         </button>
+//       </div>
+//     </div>
+//   );
+
+
+// }
+// export default App;
+
+
+
+
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <div>
+                <HomePage />
+            </div>
+        </BrowserRouter>
+
+
+
+    );
 }
 
-export default App
+export default App;
+
+
+

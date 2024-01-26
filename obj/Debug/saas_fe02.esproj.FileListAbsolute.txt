@@ -1,1 +1,2 @@
 C:\Users\User\source\repos\SaaS_Fe02\obj\Debug\saas_fe02.esproj.CoreCompileInputs.cache
+C:\Users\George\source\repos\SaaS_FE02\obj\Debug\saas_fe02.esproj.CoreCompileInputs.cache
