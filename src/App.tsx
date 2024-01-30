@@ -1,12 +1,14 @@
 import React from 'react';
-/*import logo from './logo.svg';*/
+import logo from './logo.svg';
 import './App.css';
-//import { useState } from 'react';
-//import Sidebar, { SidebarItem } from './components/Sidebar';
-//import { Home, Settings, User } from "lucide-react"; // Import the icons you want to use
-//import Searchbar from './components/Searchbar';
+import { useState } from 'react';
+import Sidebar, { SidebarItem } from './components/Sidebar';
+import { Home, Settings, User } from "lucide-react"; // Import the icons you want to use
+import Searchbar from './components/Searchbar';
 import HomePage from './pages/HomePage';
-import { BrowserRouter } from 'react-router-dom';
+import SettingsPage from './pages/SettingsPage';
+import { BrowserRouter,Route, Routes } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 
 // import { Profile } from './components/Greet';
 // import {Content,BasicTextFields} from './components/Content';
@@ -20,7 +22,7 @@ import { BrowserRouter } from 'react-router-dom';
 //   const increment =() =>{
 //     setCount(count+1);
 //   }
-
+    
 //   return (
 //     <div className="flex justify-center items-center h-screen">
 //       <div>
@@ -31,7 +33,7 @@ import { BrowserRouter } from 'react-router-dom';
 //       </div>
 //     </div>
 //   );
-
+  
 
 // }
 // export default App;
@@ -40,16 +42,21 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <div>
-                <HomePage />
-            </div>
-        </BrowserRouter>
-
-
-
-    );
+  return (
+    <BrowserRouter>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/profile" element={<ProfilePage />} /> */}
+          <Route path="/settings" element={<SettingsPage />} />
+          {/* Add more routes as needed */}
+        </Routes>
+      </MainLayout>
+    </BrowserRouter>
+      
+      
+    
+  );
 }
 
 export default App;

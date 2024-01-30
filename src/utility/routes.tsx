@@ -6,16 +6,16 @@ import { Card } from '@mui/material';
 import CardComp from '../components/Card';
 
 const MainRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<HomePage />}>
-                {/* <Route path="profile" element={<ProfileComponent />} /> */}
-                {/* <Route path="settings" element={<CardComp title={'Áãïñİò'} revenue={77}/>} /> */}
-                {/* More routes can be added here */}
-            </Route>
-            {/* <Route path="*" element={<NotFound />} /> */}
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />}>
+        {/* <Route path="profile" element={<ProfileComponent />} /> */}
+            {/* <Route path="settings" element={<CardComp title={'Î‘Î³Î¿ÏÎ­Ï‚'} revenue={77}/>} /> */}
+        {/* More routes can be added here */}
+      </Route>
+      {/* <Route path="*" element={<NotFound />} /> */}
+    </Routes>
+  );
 };
 
 export default MainRoutes;
