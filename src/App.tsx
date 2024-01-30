@@ -1,10 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
+/*import logo from './logo.svg';*/
 import './App.css';
-import { useState } from 'react';
-import Sidebar, { SidebarItem } from './components/Sidebar';
-import { Home, Settings, User } from "lucide-react"; // Import the icons you want to use
-import Searchbar from './components/Searchbar';
+//import { useState } from 'react';
+//import Sidebar, { SidebarItem } from './components/Sidebar';
+//import { Home, Settings, User } from "lucide-react"; // Import the icons you want to use
+//import Searchbar from './components/Searchbar';
 import HomePage from './pages/HomePage';
 import { BrowserRouter } from 'react-router-dom';
 

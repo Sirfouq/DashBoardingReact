@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿//import React from 'react';
 import Sidebar, { SidebarItem } from '../components/Sidebar';
 import { Home, Settings, User } from "lucide-react";
 import Searchbar from '../components/Searchbar';
@@ -51,6 +51,7 @@ const HomePage = () => {
                     </ul>
                 </div>
             </div>
+            
         </div>
     );
 }

@@ -1,12 +1,12 @@
-import React, { HTMLInputTypeAttribute, useState } from 'react'
+//import React, { HTMLInputTypeAttribute, useState } from 'react';
 import { SearchIcon } from 'lucide-react';
 
 const Searchbar = () => {
-    const [searchQuery, setSearchQuery] = useState<string>('');
+    //const [searchQuery, setSearchQuery] = useState<string>('');
 
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputTypeAttribute>) => {
-        setSearchQuery(event.target.valueOf);
-    }
+    //const handleSearchChange = (event: React.ChangeEvent<HTMLInputTypeAttribute>) => {
+    //    setSearchQuery(event.target.valueOf);
+    //}
 
     return (
 
