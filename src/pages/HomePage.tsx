@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar, { SidebarItem } from '../components/Sidebar';
-import { Home, Settings, User } from "lucide-react";
+import { Coins, Home, Receipt, Settings, ShoppingCart, User, Users, Warehouse } from "lucide-react";
 import Searchbar from '../components/Searchbar';
 import CardComp from '../components/Card';
 import { Link } from 'react-router-dom';
@@ -29,37 +29,43 @@ const HomePage = () => {
           <ul className='flex flex-col sm:flex-row flex-wrap -mx-2 justify-center sm:justify-start'>
             <li className='p-2 w-full sm:w-auto sm:basis-1/3'>
             <CardComp
+              icon={<ShoppingCart color='#8484D6'/>}
               title="Αγορές"
-              startColor="#b3bde4"  // Gradient start color
-              endColor="#c7d2fe"     // Gradient end color
+              hover_descr='Αναζητήστε τις αγορές σας'
+
+                 // Gradient end color
 />
             </li>
             <li className='p-2 w-full sm:w-auto sm:basis-1/3'>
             <CardComp
+              icon={<Coins color='#8484D6'/>}
               title="Πωλήσεις"
-              startColor="#b3bde4"  // Gradient start color
-              endColor="#c7d2fe"     // Gradient end color
+              hover_descr='Διαχειριστείτε τις πωλήσεις σας'
+                   // Gradient end color
 />
             </li>
             <li className='p-2 w-full sm:w-auto sm:basis-1/3'>
             <CardComp
+              icon={<Receipt color='#8484D6'/>}
               title="Ταμείο"
-              startColor="#b3bde4"  // Gradient start color
-              endColor="#c7d2fe"    // Gradient end color
+              hover_descr='Ταμείο'
+                 // Gradient end color
 />
             </li> 
             <li className='p-2 w-full sm:w-auto sm:basis-1/3'>
             <CardComp
+              icon={<Users color='#8484D6'/>}
               title="Οντότητες"
-              startColor="#b3bde4"  // Gradient start color
-              endColor="#c7d2fe"     // Gradient end color
+              hover_descr='Διαχειριστείτε νέες ή υπάρχουσες οντότητες'
+                  // Gradient end color
 />
             </li>
             <li className='p-2 w-full sm:w-auto sm:basis-1/3 '>
             <CardComp
+              icon={<Warehouse color='#8484D6'/>}
               title="Αποθήκη"
-              startColor="#b3bde4"  // Gradient start color
-              endColor="#c7d2fe"     // Gradient end color
+              hover_descr='Αναζητήστε προιόντα και τιμοκαταλόγους'
+                 // Gradient end color
 />
             </li>
           </ul>

@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
+import LoginPage from './pages/LoginPage';
 
 // import { Profile } from './components/Greet';
 // import {Content,BasicTextFields} from './components/Content';
@@ -48,7 +49,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           {/* <Route path="/profile" element={<ProfilePage />} /> */}
-          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings" element={<LoginPage />} />
           {/* Add more routes as needed */}
         </Routes>
       </MainLayout>
