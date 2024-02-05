@@ -7,60 +7,37 @@ import { Home, Settings, User } from "lucide-react"; // Import the icons you wan
 import Searchbar from './components/Searchbar';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
-import { BrowserRouter,Route, Routes } from 'react-router-dom';
+import { BrowserRouter,Navigate,Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import LoginPage from './pages/LoginPage';
+import MainRoutes from './utility/routes';
 
-// import { Profile } from './components/Greet';
-// import {Content,BasicTextFields} from './components/Content';
-
-// function App() {
-
-
-// const App =()=> {
-//   const [count,setCount] = useState(0);
-
-//   const increment =() =>{
-//     setCount(count+1);
-//   }
-    
-//   return (
-//     <div className="flex justify-center items-center h-screen">
-//       <div>
-//         <h1 className="text-center mb-4">{count}</h1>
-//         <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={increment}>
-//           Click
-//         </button>
-//       </div>
-//     </div>
-//   );
-  
-
-// }
-// export default App;
 
 
 
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
   return (
     <BrowserRouter>
-      <MainLayout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* <Route path="/profile" element={<ProfilePage />} /> */}
-          <Route path="/settings" element={<LoginPage />} />
-          {/* Add more routes as needed */}
-        </Routes>
-      </MainLayout>
+      <Routes>
+        {/* Conditionally render routes based on isLoggedIn */}
+        {isLoggedIn ? (
+          // Wrap MainRoutes within MainLayout when the user is logged in
+          <Route path="/*" element={<MainLayout><MainRoutes /></MainLayout>} />
+        ) : (
+          // Redirect to login page if not logged in
+          <>
+            <Route path="/login" element={<LoginPage  />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </>
+        )}
+      </Routes>
     </BrowserRouter>
-      
-      
-    
   );
-}
+};
 
 export default App;
-
 
 

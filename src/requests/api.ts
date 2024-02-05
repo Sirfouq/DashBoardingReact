@@ -15,8 +15,12 @@ const postData = async (username: string, password: string): Promise<ApiResponse
   };
 
   try {
-    const response = await axios.post<ApiResponse>(url, bodyData);
+    // Note the addition of withCredentials: true in the config object
+    const response = await axios.post<ApiResponse>(url, bodyData, {
+      withCredentials: true, // Ensures cookies are included with the request, important for sessions and authentication
+    })
     console.log('Response:', response.data);
+    console.log('HEaders',response.headers)
     return response.data; // Return the response data
   } catch (error) {
     if (axios.isAxiosError(error)) {

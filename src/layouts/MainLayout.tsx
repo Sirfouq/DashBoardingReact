@@ -8,7 +8,7 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout = ({ children }:MainLayoutProps) => {
   return (
     <div className='flex h-screen bg-gray-100 overflow-hidden'>
       <Sidebar>
@@ -21,7 +21,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <Link to="/settings">
           <SidebarItem icon={<Settings size={20} />} text="Settings"/>
         </Link>
-        {/* ... other items */}
+        
       </Sidebar>
       <div className='flex-1'>
         {children} {/* Main content changes here */}
