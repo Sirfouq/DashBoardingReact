@@ -1,21 +1,34 @@
 import React, { FormEvent, useState } from 'react';
-import postData from '../requests/api';
+import {postData} from '../requests/api';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        try {
-          const response = await postData(email, password);
-          console.log('Login successful:', response);
-          // Redirect or handle success
-        } catch (error) {
-          console.error('Login failed:', error);
-          // Handle error, show error message to the user, etc.
-        }
-      };
+      event.preventDefault();
+      setIsLoading(true); // Start the spinner
+    
+      // Wrap the login logic and the delay in Promise.all to ensure both complete
+      await Promise.all([
+        postData(email, password), // Attempt to log in
+        new Promise((resolve) => setTimeout(resolve, 500)) // Minimum spinner display time (500ms)
+      ])
+      .then(([response]) => {
+        console.log('Login successful:', response);
+        return response.data;
+        // Redirect or handle success here
+      })
+      .catch((error) => {
+        console.error('Login failed:', error);
+        // Handle error here
+      })
+      .finally(() => {
+        setIsLoading(false); // Stop the spinner
+      });
+    };
+    
       
 
 
@@ -93,11 +106,18 @@ const LoginPage = () => {
             </a>
           </div>
           <button
-            type="submit"
-            className="w-full text-black bg-purple-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-          >
-            Sign in
-          </button>
+      type="submit"
+      disabled={isLoading}
+      className={`w-full text-black bg-purple-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 ${isLoading ? 'opacity-75' : ''}`}
+    >
+      {isLoading ? (
+        <div className="flex items-center justify-center">
+          <div className="spinner border-t-transparent border-4 border-purple-600 rounded-full w-5 h-5 animate-spin"></div>
+        </div>
+      ) : (
+        'Sign in'
+      )}
+    </button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Don’t have an account yet?{" "}
             <a
