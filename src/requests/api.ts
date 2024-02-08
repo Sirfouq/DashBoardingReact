@@ -8,8 +8,8 @@ interface ApiResponse {
 
 // Update the return type to Promise<ApiResponse> to reflect that it always returns a promise.
 const postData = async (username: string, password: string): Promise<ApiResponse> => {
-  const url = 'http://testsaas.dynasoft.gr/';
-  //const url = 'http://localhost:3000/login';
+  // const url = 'http://testsaas.dynasoft.gr/';
+  const url = 'http://localhost:3000/login';
   const bodyData = {
     username,
     password,

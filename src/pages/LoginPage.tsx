@@ -1,34 +1,32 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import {postData} from '../requests/api';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
 
-const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+const LoginPage: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      setIsLoading(true); // Start the spinner
-    
-      // Wrap the login logic and the delay in Promise.all to ensure both complete
-      await Promise.all([
-        postData(email, password), // Attempt to log in
-        new Promise((resolve) => setTimeout(resolve, 500)) // Minimum spinner display time (500ms)
-      ])
-      .then(([response]) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    postData(email, password)
+      .then((response) => {
         console.log('Login successful:', response);
-        return response.data;
-        // Redirect or handle success here
+        login(); // Update login state in context
+        navigate("/"); // Navigate to home
       })
       .catch((error) => {
         console.error('Login failed:', error);
-        // Handle error here
       })
       .finally(() => {
-        setIsLoading(false); // Stop the spinner
+        setIsLoading(false);
       });
-    };
-    
+  };
       
 
 

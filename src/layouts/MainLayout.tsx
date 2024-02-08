@@ -12,7 +12,7 @@ const MainLayout = ({ children }:MainLayoutProps) => {
   return (
     <div className='flex h-screen bg-gray-100 overflow-hidden'>
       <Sidebar>
-        <Link to="/">
+        <Link to="/" replace={true}>
           <SidebarItem icon={<Home size={20} />} text="Home" />
         </Link>
         <Link to="/profile">

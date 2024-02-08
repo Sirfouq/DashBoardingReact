@@ -14,7 +14,11 @@ const MainRoutes = () => {
             {/* <Route path="settings" element={<CardComp title={'Αγορές'} revenue={77}/>} /> */}
         {/* More routes can be added here */}
       </Route>
+
       <Route path="login" element ={<LoginPage/>}>
+      </Route>
+
+      <Route path="*" element ={<LoginPage/>}>
       </Route>
       {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
