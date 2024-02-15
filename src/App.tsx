@@ -13,8 +13,9 @@ const AuthenticatedApp = () => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        await verifySession();
-        login(); // Set to true if session is valid
+        const response =await verifySession();
+
+        response.logged_in?login():logout(); // Set to true if session is valid
       } catch (error) {
         console.error('Session verification failed:', error);
         logout(); // Set to false if session is not valid or verification fails

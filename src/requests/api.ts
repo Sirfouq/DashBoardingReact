@@ -2,14 +2,14 @@
 import axios from 'axios';
 
 interface ApiResponse {
-  success: boolean;
+  logged_in: boolean;
   data: any; // Replace 'any' with a more specific type according to your API response structure
 }
 
 // Update the return type to Promise<ApiResponse> to reflect that it always returns a promise.
 const postData = async (username: string, password: string): Promise<ApiResponse> => {
-  // const url = 'https://saas.dynasoft.gr/loginauth';
-  const url = 'http://localhost:3000/login';
+  const url = 'https://saas.dynasoft.gr/loginauth';
+  // const url = 'http://localhost:3000/login';
   const bodyData = {
     username,
     password,
@@ -38,7 +38,8 @@ const postData = async (username: string, password: string): Promise<ApiResponse
 
 
 const verifySession = async (): Promise<ApiResponse> => {
-  const url = 'http://localhost:3000/verifySession';
+  // const url = 'http://localhost:3000/verifySession';
+  const url = 'https://saas.dynasoft.gr/cooktest';
 
   try {
     const response = await axios.get<ApiResponse>(url, {
