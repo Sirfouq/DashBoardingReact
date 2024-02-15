@@ -1,32 +1,33 @@
 import React, { FormEvent, useState } from 'react';
-import {postData} from '../requests/api';
+import { postData } from '../requests/api';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider'; // Make sure this path is correct
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      setIsLoading(true); // Start the spinner
+    const { login } = useAuth(); // Use the login function from the context
+    const navigate = useNavigate();
     
-      // Wrap the login logic and the delay in Promise.all to ensure both complete
-      await Promise.all([
-        postData(email, password), // Attempt to log in
-        new Promise((resolve) => setTimeout(resolve, 500)) // Minimum spinner display time (500ms)
-      ])
-      .then(([response]) => {
-        console.log('Login successful:', response);
-        return response.data;
-        // Redirect or handle success here
-      })
-      .catch((error) => {
-        console.error('Login failed:', error);
-        // Handle error here
-      })
-      .finally(() => {
-        setIsLoading(false); // Stop the spinner
-      });
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setIsLoading(true);
+
+        try {
+            const [response] = await Promise.all([
+                postData(email, password),
+                new Promise((resolve) => setTimeout(resolve, 500))
+            ]);
+            console.log('Login successful:', response);
+            login(); 
+            navigate('/'); // Redirect the user
+        } catch (error) {
+            console.error('Login failed:', error);
+            // Optionally call logout or handle the error in some other way
+        } finally {
+            setIsLoading(false);
+        }
     };
     
       
