@@ -15,7 +15,7 @@ const CardComp = ({ title, icon,hover_descr }: CardProps) => {
         {`
           .card-hover {
             position: relative;
-            overflow: hidden;
+            
             transition: transform 0.3s ease-in-out;
           }
           .card-hover::after {

@@ -4,6 +4,7 @@ import Sidebar, { SidebarItem } from '../components/Sidebar';
 import { Coins, Contact, File, HelpCircle, Home, Settings, ShoppingBag, Store, User, Users } from "lucide-react";
 import { Link } from 'react-router-dom';
 import BottomBar from '../components/BottomBar';
+import TopBar from '../components/TopBar';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -13,7 +14,7 @@ interface MainLayoutProps {
 const MainLayout = ({ children }:MainLayoutProps) => {
   return (
     <>
-    <div className='flex h-screen bg-gray-100 overflow-hidden'>
+    <div className='flex h-screen bg-gray-100'>
       <Sidebar>
         <Link to="/" replace={true}>
           <SidebarItem icon={<Home size={20} />} text="Home" />
@@ -46,11 +47,14 @@ const MainLayout = ({ children }:MainLayoutProps) => {
           <SidebarItem icon={<HelpCircle size={20} />} text="Helpers"/>
         </Link>
       </Sidebar>
-      <div className='flex-1 overflow-auto'>
-        {children} {/* Main content changes here */}
-       
-      </div>
-      
+
+      {/* <div className='flex flex-col flex-1'>
+        <TopBar /> */}
+        <main className='flex-grow overflow-y-auto'>
+          {children}
+        </main>
+      {/* </div> */}
+      <BottomBar />
     </div>
      
      </>

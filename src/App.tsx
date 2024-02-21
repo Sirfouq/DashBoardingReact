@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import { verifySession } from './requests/api';
 import { AuthProvider, useAuth } from './contexts/AuthProvider'; // Make sure this path is correct
 import BottomBar from './components/BottomBar';
+import HomePage from './pages/HomePage';
 
 const AuthenticatedApp = () => {
   const { isLoggedIn, login, logout } = useAuth();
@@ -36,10 +37,10 @@ const AuthenticatedApp = () => {
     <>
       <div className="flex flex-col h-screen">
         {/* Main content area with padding at the bottom to account for BottomBar */}
-        <div className="flex-1 overflow-y-auto pb-12" style={{ paddingBottom: '3rem' }}> {/* Adjust the padding to match BottomBar's height */}
+        <div className="flex-1 "> {/* Adjust the padding to match BottomBar's height */}
           <Routes>
             {isLoggedIn ? (
-              <Route path="/*" element={<MainLayout><MainRoutes /></MainLayout>} />
+              <Route path="/*" element={<MainLayout>< MainRoutes/></MainLayout>} />
             ) : (
               <>
                 <Route path="/login" element={<LoginPage />} />
@@ -49,7 +50,7 @@ const AuthenticatedApp = () => {
           </Routes>
         </div>
         {/* BottomBar fixed to the bottom */}
-        <BottomBar />
+       
       </div>
     </>
   );

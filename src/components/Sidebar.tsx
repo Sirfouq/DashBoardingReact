@@ -52,7 +52,7 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
     <aside className="h-screen">
       <nav className="h-full flex flex-col bg-indigo-50 border-r shadow-sm">
         <SidebarContext.Provider value={{ expanded, activeItem, updateActiveItem }}>
-          <ul className="flex-1 px-3 py-4">{children}</ul>
+          <ul className="flex-1 px-3 py-4 overflow-y-auto overflow-x-hidden">{children}</ul>
         </SidebarContext.Provider>
         {showFooter&&(
         <div className="border-t flex flex-col p-3">
