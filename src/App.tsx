@@ -37,7 +37,7 @@ const AuthenticatedApp = () => {
     <>
       <div className="flex flex-col h-screen">
         {/* Main content area with padding at the bottom to account for BottomBar */}
-        <div className="flex-1 "> {/* Adjust the padding to match BottomBar's height */}
+        <div className="flex-1 overflow-y-auto"> {/* Adjust the padding to match BottomBar's height */}
           <Routes>
             {isLoggedIn ? (
               <Route path="/*" element={<MainLayout>< MainRoutes/></MainLayout>} />

@@ -14,7 +14,7 @@ interface MainLayoutProps {
 const MainLayout = ({ children }:MainLayoutProps) => {
   return (
     <>
-    <div className='flex h-screen bg-gray-100'>
+     <div className='flex h-screen bg-gray-100 '>
       <Sidebar>
         <Link to="/" replace={true}>
           <SidebarItem icon={<Home size={20} />} text="Home" />
@@ -47,13 +47,14 @@ const MainLayout = ({ children }:MainLayoutProps) => {
           <SidebarItem icon={<HelpCircle size={20} />} text="Helpers"/>
         </Link>
       </Sidebar>
-
-      {/* <div className='flex flex-col flex-1'>
-        <TopBar /> */}
-        <main className='flex-grow overflow-y-auto'>
+      
+      
+       <div className='flex flex-col flex-1'>
+        <TopBar /> 
+        <main className='flex flex-col flex-1 overflow-y-auto'>
           {children}
         </main>
-      {/* </div> */}
+       </div> 
       <BottomBar />
     </div>
      
