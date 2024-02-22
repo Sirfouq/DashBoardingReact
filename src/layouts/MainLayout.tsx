@@ -12,6 +12,7 @@ interface MainLayoutProps {
 
 
 const MainLayout = ({ children }:MainLayoutProps) => {
+  const topBarHeight = 'h-12';
   return (
     <>
      <div className='flex h-screen bg-gray-100 '>
@@ -49,9 +50,9 @@ const MainLayout = ({ children }:MainLayoutProps) => {
       </Sidebar>
       
       
-       <div className='flex flex-col flex-1'>
+       <div className='flex flex-col flex-1 backdrop-filter backdrop-blur-sm'>
         <TopBar /> 
-        <main className='flex flex-col flex-1 overflow-y-auto'>
+        <main className='flex flex-col flex-1 overflow-y-auto mt-0  '>
           {children}
         </main>
        </div> 

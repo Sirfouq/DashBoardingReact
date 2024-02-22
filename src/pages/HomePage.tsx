@@ -6,7 +6,7 @@ const HomePage = () => {
 
 
   return (
-    <div className='flex flex-col flex-1 bg-white'>
+    <div className='flex flex-col flex-1 bg-white mt-10 md:mt-0'>
       <div className='overflow-y-auto pb-20 md:pb-0 p-4 flex-grow'>
         <ul className='flex flex-col sm:flex-row flex-wrap -mx-2 justify-center sm:justify-start'>
           <li className='p-2 w-full sm:w-auto sm:basis-1/3'>
@@ -44,6 +44,7 @@ const HomePage = () => {
               hover_descr='Αναζητήστε προιόντα και τιμοκαταλόγους'
             />
           </li>
+          
         </ul>
       </div>
     </div>

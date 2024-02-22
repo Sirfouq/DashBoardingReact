@@ -26,6 +26,7 @@ const CardComp = ({ title, icon,hover_descr }: CardProps) => {
             left: 0;
             right: 0;
             bottom: 0;
+            border-radius: 10px;
             background: rgba(0, 0, 0, 0);
             transition: background-color 0.3s ease-in-out;
           }
@@ -34,6 +35,7 @@ const CardComp = ({ title, icon,hover_descr }: CardProps) => {
           }
           .card-hover:hover::after {
             background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
           }
           .hover-content {
             position: absolute;
@@ -52,9 +54,9 @@ const CardComp = ({ title, icon,hover_descr }: CardProps) => {
           }
         `}
       </style>
-      <div className="rounded-lg shadow-md p-6 max-w-lg card-hover relative">
-        <div className="flex justify-between items-center gap-4 mb-4"> {/* Use gap to create space between icon and title */}
-          <div className="icon-container flex items-center justify-center"> {/* Flex container for the icon */}
+      <div className="rounded-lg shadow-md p-6 max-w-lg min-w-max card-hover relative">
+        <div className="flex justify-between items-center gap-4 mb-4"> 
+          <div className="icon-container flex items-center justify-center"> 
             {icon}
           </div>
           <div className="text-2xl font-mono font-bold text-gray-800">{title}</div>

@@ -28,10 +28,7 @@
     color: #265967;
 }
 
-.custom-height{
-    max-height: 40px;
-    background-color: aqua;
-}
+
 
 @keyframes App-logo-spin {
     from {
