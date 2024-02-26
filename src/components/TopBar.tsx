@@ -1,9 +1,25 @@
-import { Moon, Phone, Search, SearchCheck, Sun, User } from "lucide-react";
+import { ChevronDown, Moon, Phone, Search, SearchCheck, Sun, User } from "lucide-react";
 import { useState } from "react";
+import { StoreRequest } from "../requests/api";
 
 const TopBar = () => {
+  const [isMenuVisible,setIsMenuVisible] = useState(false);
   const [isDarkModeOn,setDarkModeOn] = useState(false);
+  const [storeData, setStoreData] = useState(null); // State to store fetched data
+
+  const handleStoreRequest = async () => {
+    try {
+      const response = await StoreRequest();
+      console.log("Store data:", response); // Assuming response is the data you need
+      // Consider setting this data to a state or passing it to other components
+    } catch (error) {
+      console.error("Error fetching store data:", error);
+      // Handle the error, maybe show a notification to the user
+    }
+  };
+
   return (
+    
     <div className="absolute lg:relative top-0 left-0 w-full z-10 ">
     <nav className="bg-indigo-500 bg-opacity-60 text-white text-sm h-12 flex justify-between items-center px-4 backdrop-blur-sm">
       {/* Left side - Navigation links */}
@@ -24,12 +40,30 @@ const TopBar = () => {
         </a>
 
         {/* User account or login icon */}
-        <a href="/login" className="flex items-center gap-2 hover:text-blue-300 transition-colors">
+        <a  className="flex items-center  hover:text-blue-300 transition-colors" onClick={()=>setIsMenuVisible(!isMenuVisible)} >
           <User size={20} />
+          <ChevronDown size={10}/>
         </a>
       </div>
     </nav>
+
+
+    {isMenuVisible && (
+      <div className="absolute top-full right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="py-1">
+          <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+          <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+        </div>
+      </div>
+    )}
+    
     </div>
+    
+    
+
+   
+    
       
   );
 };

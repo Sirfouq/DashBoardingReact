@@ -54,34 +54,7 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
         <SidebarContext.Provider value={{ expanded, activeItem, updateActiveItem }}>
           <ul className="flex-1 px-3 py-4 overflow-y-auto overflow-x-hidden">{children}</ul>
         </SidebarContext.Provider>
-        {showFooter&&(
-        <div className="border-t flex flex-col p-3">
-          {isMenuVisible && (
-            <div style={{
-              display: 'block',
-              marginBottom: '10px',
-              border: '1px solid #ddd',
-              boxShadow: '0px 2px 5px rgba(0,0,0,0.2)',
-              backgroundColor: 'white',
-              borderRadius: '4px',
-              padding: '10px',
-            }}>
-              {/* Menu items */}
-              <div>Menu Item 1</div>
-              <div>Menu Item 2</div>
-              <div>Menu Item 3</div>
-           
-            </div>
-          )}
-          <div className="flex justify-between items-center">
-            <div className="leading-4">
-              <h4 className="font-semibold">George Red</h4>
-              <span className="text-xs text-gray-600">gred@gmail.com</span>
-            </div>
-            <MoreVertical size={20} onClick={toggleMenu} style={{ cursor: 'pointer' }} />
-          </div>
-        </div>
-        )}
+        
       </nav>
     </aside>
   );

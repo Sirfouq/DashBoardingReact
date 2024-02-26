@@ -58,4 +58,18 @@ const verifySession = async (): Promise<ApiResponse> => {
   }
 };
 
-export  {postData,verifySession};
+const StoreRequest = async (): Promise<ApiResponse> => {
+  const url = 'https://saas.dynasoft.gr/erp_Store_all';
+  try {
+    const response = await axios.get<ApiResponse>(url, {
+      withCredentials: true, // Keep or remove based on API requirements
+    });
+    console.log('Data fetched successfully');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data', error);
+    throw error; // Allows calling code to handle the error further
+  }
+};
+
+export  {postData,verifySession,StoreRequest};
