@@ -38,7 +38,7 @@ const MainLayout = ({ children }:MainLayoutProps) => {
         <Link to="/contacts" replace={true}>
           <SidebarItem icon={<Contact size={20} />} text="Contacts" />
         </Link>
-        <Link to="/people">
+        <Link to="/tables">
           <SidebarItem icon={<Users size={20} />} text="People" />
         </Link>
         <Link to="/reports">

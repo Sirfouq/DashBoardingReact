@@ -7,6 +7,7 @@ import { verifySession } from './requests/api';
 import { AuthProvider, useAuth } from './contexts/AuthProvider'; // Make sure this path is correct
 import BottomBar from './components/BottomBar';
 import HomePage from './pages/HomePage';
+import DemoPage from './tables/page';
 
 const AuthenticatedApp = () => {
   const { isLoggedIn, login, logout } = useAuth();
@@ -44,7 +45,8 @@ const AuthenticatedApp = () => {
             ) : (
               <>
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="*" element={<Navigate to="/login" replace />} />
+                {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
+                <Route path="/tables" element={<DemoPage/>}/>
               </>
             )}
           </Routes>
