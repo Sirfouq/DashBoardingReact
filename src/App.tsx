@@ -35,26 +35,20 @@ const AuthenticatedApp = () => {
   }
 
   return (
-    <>
-      <div className="flex flex-col h-screen">
-        {/* Main content area with padding at the bottom to account for BottomBar */}
-        <div className="flex-1 overflow-y-auto"> {/* Adjust the padding to match BottomBar's height */}
-          <Routes>
-            {isLoggedIn ? (
-              <Route path="/*" element={<MainLayout>< MainRoutes/></MainLayout>} />
-            ) : (
-              <>
-                <Route path="/login" element={<LoginPage />} />
-                {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
-                <Route path="/tables" element={<DemoPage/>}/>
-              </>
-            )}
-          </Routes>
-        </div>
-        {/* BottomBar fixed to the bottom */}
-       
+    <div className="flex flex-col h-screen">
+      <div className="flex-1 overflow-y-auto">
+        <Routes>
+          {isLoggedIn ? (
+            <Route path="/*" element={<MainLayout><MainRoutes /></MainLayout>} />
+          ) : (
+            <>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<LoginPage />} />
+            </>
+          )}
+        </Routes>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -53,7 +53,9 @@ const MainLayout = ({ children }:MainLayoutProps) => {
        <div className='flex flex-col flex-1 backdrop-filter backdrop-blur-sm'>
         <TopBar /> 
         <main className='flex flex-col flex-1 overflow-y-auto mt-0  '>
+        <div className='flex flex-col flex-1 bg-white mt-10 md:mt-0'>
           {children}
+        </div>
         </main>
        </div> 
       <BottomBar />
