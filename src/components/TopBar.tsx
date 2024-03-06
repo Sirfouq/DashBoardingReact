@@ -6,6 +6,7 @@ const TopBar = () => {
   const [isMenuVisible,setIsMenuVisible] = useState(false);
   const [isDarkModeOn,setDarkModeOn] = useState(false);
   const [storeData, setStoreData] = useState(null); // State to store fetched data
+  const sidebarWidth = "16rem"; 
 
   const handleStoreRequest = async () => {
     try {
@@ -20,7 +21,7 @@ const TopBar = () => {
 
   return (
     
-    <div className="absolute lg:relative top-0 left-0 w-full z-10 ">
+    <div className="fixed top-0 left-0 right-0 z-10" style={{ paddingLeft: sidebarWidth }}> {/* Inline style to offset the TopBar from the Sidebar */}
     <nav className="bg-indigo-500 bg-opacity-60 text-white text-sm h-12 flex justify-between items-center px-4 backdrop-blur-sm">
       {/* Left side - Navigation links */}
       <div className="flex gap-4">

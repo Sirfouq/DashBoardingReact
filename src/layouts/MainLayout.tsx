@@ -12,54 +12,62 @@ interface MainLayoutProps {
 
 
 const MainLayout = ({ children }:MainLayoutProps) => {
-  const topBarHeight = 'h-12';
+  const bottomBarHeight = 'h-64'; // The height of your BottomBar
+
   return (
     <>
-     <div className='flex h-screen bg-gray-100 '>
+     <div className='flex h-screen bg-gray-100 overflow-hidden'> {/* Ensure the entire layout is within the viewport height and prevent overflow */}
       <Sidebar>
         <Link to="/" replace={true}>
-          <SidebarItem icon={<Home size={20} />} text="Home" />
+          <SidebarItem icon={<Home size={18} />} text="Home" />
         </Link>
         <Link to="/profile">
-          <SidebarItem icon={<User size={20} />} text="Profile" />
+          <SidebarItem icon={<User size={18} />} text="Profile" />
         </Link>
         <Link to="/settings">
-          <SidebarItem icon={<Settings size={20} />} text="Settings"/>
+          <SidebarItem icon={<Settings size={18} />} text="Settings"/>
         </Link>
         <Link to="/purchases" replace={true}>
-          <SidebarItem icon={<ShoppingBag size={20} />} text="Purchases" />
+          <SidebarItem icon={<ShoppingBag size={18} />} text="Purchases" />
         </Link>
         <Link to="/sales">
-          <SidebarItem icon={<Coins size={20} />} text="Sales" />
+          <SidebarItem icon={<Coins size={18} />} text="Sales" />
         </Link>
         <Link to="/store">
-          <SidebarItem icon={<Store size={20} />} text="Store"/>
+          <SidebarItem icon={<Store size={18} />} text="Store"/>
         </Link>
         <Link to="/contacts" replace={true}>
-          <SidebarItem icon={<Contact size={20} />} text="Contacts" />
+          <SidebarItem icon={<Contact size={18} />} text="Contacts" />
         </Link>
         <Link to="/tables">
-          <SidebarItem icon={<Users size={20} />} text="People" />
+          <SidebarItem icon={<Users size={18} />} text="People" />
         </Link>
         <Link to="/reports">
-          <SidebarItem icon={<File size={20} />} text="Reports"/>
+          <SidebarItem icon={<File size={18} />} text="Reports"/>
         </Link>
         <Link to="/helpers">
-          <SidebarItem icon={<HelpCircle size={20} />} text="Helpers"/>
+          <SidebarItem icon={<HelpCircle size={18} />} text="Helpers"/>
         </Link>
       </Sidebar>
       
       
-       <div className='flex flex-col flex-1 backdrop-filter backdrop-blur-sm'>
-        <TopBar /> 
-        <main className='flex flex-col flex-1 overflow-y-auto mt-0  '>
-        <div className='flex flex-col flex-1 bg-white mt-10 md:mt-0'>
-          {children}
-        </div>
-        </main>
-       </div> 
-      <BottomBar />
-    </div>
+       {/* <div className='flex flex-col flex-1 backdrop-filter backdrop-blur-sm'> */}
+        {/* <TopBar />  */}
+        
+        
+          <main className='flex-1 overflow-auto pb-8 bg-white'> {/* Padding-bottom added here */}
+            <div className='bg-white p-4'>
+              {children}
+            </div>
+            <div>
+            <BottomBar/>
+            
+            </div>
+          </main>
+          
+       
+      </div>
+    {/* </div> */}
      
      </>
   );

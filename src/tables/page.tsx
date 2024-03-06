@@ -17,9 +17,9 @@ function DemoPage() {
   }, []); // Empty dependency array means this effect will only run once on mount
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={users} /> {/* Pass the fetched users to your DataTable */}
-    </div>
+    <div className="container mx-auto py-10 overflow-x-auto"> {/* horizontal scroll for wide tables */}
+    <DataTable columns={columns} data={users} />
+  </div>
   );
 }
 

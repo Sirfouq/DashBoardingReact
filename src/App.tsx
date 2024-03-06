@@ -36,19 +36,21 @@ const AuthenticatedApp = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-hidden">
         <Routes>
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? ( */}
             <Route path="/*" element={<MainLayout><MainRoutes /></MainLayout>} />
-          ) : (
+          {/* ) : ( */}
             <>
               <Route path="/login" element={<LoginPage />} />
               <Route path="*" element={<LoginPage />} />
             </>
-          )}
+          {/* )} */}
         </Routes>
       </div>
+      {/* <BottomBar /> */}
     </div>
+    
   );
 };
 
