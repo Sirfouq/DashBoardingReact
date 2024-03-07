@@ -1,7 +1,6 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
+  
   height: 100%; /* or min-height: 100%; depending on your requirements */
   overflow: hidden; /* this will remove scrollbars, but ensure inner content can scroll */
 }
