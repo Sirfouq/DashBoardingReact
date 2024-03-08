@@ -58,8 +58,8 @@ const verifySession = async (): Promise<ApiResponse> => {
   }
 };
 
-const StoreRequest = async (): Promise<ApiResponse> => {
-  const url = 'https://saas.dynasoft.gr/erp_Store_all';
+const get_companies = async (): Promise<ApiResponse> => {
+  const url = 'https://saas.dynasoft.gr/erp_companies_all';
   try {
     const response = await axios.get<ApiResponse>(url, {
       withCredentials: true, // Keep or remove based on API requirements
@@ -72,4 +72,4 @@ const StoreRequest = async (): Promise<ApiResponse> => {
   }
 };
 
-export  {postData,verifySession,StoreRequest};
+export  {postData,verifySession,get_companies};

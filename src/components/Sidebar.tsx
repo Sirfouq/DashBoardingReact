@@ -34,10 +34,10 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
     }, []);
 
     return (
-        <aside className="h-screen max-w-72">
-            <nav className="h-full flex flex-col bg-indigo-50 border-r shadow-sm ">
+        <aside className="h-screen max-w-64">
+            <nav className="h-full flex flex-col bg-indigo-50 border-r shadow-sm overflow-y-auto ">
                 <SidebarContext.Provider value={{ expanded, activeItem, updateActiveItem }}>
-                    <ul className="flex-1 px-3 mt-5">{children}</ul>
+                    <ul className="flex-1 px-3 mt-12">{children}</ul>
                 </SidebarContext.Provider>
                 {/* <div className="border-t flex p-3">
                     <img

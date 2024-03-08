@@ -8,20 +8,20 @@ const TopBar = () => {
   const [storeData, setStoreData] = useState(null); // State to store fetched data
   const sidebarWidth = "16rem"; 
 
-  const handleStoreRequest = async () => {
-    try {
-      const response = await StoreRequest();
-      console.log("Store data:", response); // Assuming response is the data you need
-      // Consider setting this data to a state or passing it to other components
-    } catch (error) {
-      console.error("Error fetching store data:", error);
-      // Handle the error, maybe show a notification to the user
-    }
-  };
+  // const handleStoreRequest = async () => {
+  //   try {
+  //     const response = await StoreRequest();
+  //     console.log("Store data:", response); // Assuming response is the data you need
+  //     // Consider setting this data to a state or passing it to other components
+  //   } catch (error) {
+  //     console.error("Error fetching store data:", error);
+  //     // Handle the error, maybe show a notification to the user
+  //   }
+  // };
 
   return (
     
-    <div className="fixed top-0 left-0 right-0 z-10" style={{ paddingLeft: sidebarWidth }}> {/* Inline style to offset the TopBar from the Sidebar */}
+    <div className="fixed top-0 left-0 right-0 z-10 "> {/* Inline style to offset the TopBar from the Sidebar */}
     <nav className="bg-indigo-500 bg-opacity-60 text-white text-sm h-12 flex justify-between items-center px-4 backdrop-blur-sm">
       {/* Left side - Navigation links */}
       <div className="flex gap-4">
