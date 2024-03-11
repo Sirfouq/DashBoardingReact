@@ -34,7 +34,7 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
     }, []);
 
     return (
-        <aside className="h-screen max-w-64">
+        <aside className="h-screen max-w-lg">
             <nav className="h-full flex flex-col bg-indigo-50 border-r shadow-sm overflow-y-auto ">
                 <SidebarContext.Provider value={{ expanded, activeItem, updateActiveItem }}>
                     <ul className="flex-1 px-3 mt-12">{children}</ul>
@@ -72,7 +72,7 @@ export const SidebarItem: FC<SidebarItemProps> = ({ icon, text, alert }) => {
 
     return (
         <li
-            className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${isActive ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800" : "hover:bg-indigo-200 text-gray-600"
+            className={`relative flex items-center py-2 px-3 my-1 font-semibold rounded-md cursor-pointer transition-colors group ${isActive ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800" : "hover:bg-indigo-200 text-gray-600"
                 }`}
             onClick={() => updateActiveItem(text)}
         >

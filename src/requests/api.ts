@@ -3,7 +3,7 @@ import axios from 'axios';
 
 interface ApiResponse {
   logged_in: boolean;
-  data: any; // Replace 'any' with a more specific type according to your API response structure
+  data: any; // 
 }
 
 // Update the return type to Promise<ApiResponse> to reflect that it always returns a promise.
@@ -71,5 +71,18 @@ const get_companies = async (): Promise<ApiResponse> => {
     throw error; // Allows calling code to handle the error further
   }
 };
+const StoreRequest = async (): Promise<ApiResponse> => {
+  const url = 'https://saas.dynasoft.gr/erp_Store_all';
+  try {
+    const response = await axios.get<ApiResponse>(url, {
+      withCredentials: true, // Keep or remove based on API requirements
+    });
+    console.log('Data fetched successfully');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data', error);
+    throw error; // Allows calling code to handle the error further
+  }
+};
 
-export  {postData,verifySession,get_companies};
+export  {postData,verifySession,get_companies,StoreRequest};

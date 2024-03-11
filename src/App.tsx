@@ -7,7 +7,7 @@ import { verifySession } from './requests/api';
 import { AuthProvider, useAuth } from './contexts/AuthProvider'; // Make sure this path is correct
 import BottomBar from './components/BottomBar';
 import HomePage from './pages/HomePage';
-import DataTableVIew from './tables/page';
+import DataTableVIew from './tables/peopleTableView';
 
 const AuthenticatedApp = () => {
   const { isLoggedIn, login, logout } = useAuth();

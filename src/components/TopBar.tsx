@@ -1,6 +1,5 @@
 import { ChevronDown, Moon, Phone, Search, SearchCheck, Sun, User } from "lucide-react";
 import { useState } from "react";
-import { StoreRequest } from "../requests/api";
 
 const TopBar = () => {
   const [isMenuVisible,setIsMenuVisible] = useState(false);
@@ -22,16 +21,13 @@ const TopBar = () => {
   return (
     
     <div className="fixed top-0 left-0 right-0 z-10 "> {/* Inline style to offset the TopBar from the Sidebar */}
-    <nav className="bg-indigo-500 bg-opacity-60 text-white text-sm h-12 flex justify-between items-center px-4 backdrop-blur-sm">
-      {/* Left side - Navigation links */}
-      <div className="flex gap-4">
-        {isDarkModeOn?
+    <nav className="bg-indigo-500 bg-opacity-60 text-white text-sm h-12 flex justify-end items-center px-4 backdrop-blur-sm">
+        
+      
+      <div className="flex items-center gap-4">
+      {isDarkModeOn?
         (<Sun size={20}/>):
         (<Moon size={20}/>)}
-      </div>
-     
-      {/* Right side - Icons and actions */}
-      <div className="flex items-center gap-4">
       <div className="h-6 w-px bg-white bg-opacity-50">
 
       </div>
