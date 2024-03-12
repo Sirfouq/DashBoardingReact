@@ -18,35 +18,35 @@ const MainLayout = ({ children }:MainLayoutProps) => {
     <>
      <div className='flex h-screen bg-gray-100 overflow-hidden'> {/* Ensure the entire layout is within the viewport height and prevent overflow */}
       <Sidebar>
-        <Link to="/" replace={true}>
-          <SidebarItem icon={<Home size={20} />} text="Home" />
+        <Link to="/" >
+          <SidebarItem icon={<Home size={20} />} text="Αρχική" route='/' />
         </Link>
         <Link to="/profile">
-          <SidebarItem icon={<User size={20} />} text="Profile" />
+          <SidebarItem icon={<User size={20} />} text="Προφίλ" route='/profile' />
         </Link>
         <Link to="/settings">
-          <SidebarItem icon={<Settings size={20} />} text="Settings"/>
+          <SidebarItem icon={<Settings size={20} />} text="Ρυθμίσεις" route='/settings'/>
         </Link>
         <Link to="/purchases" replace={true}>
-          <SidebarItem icon={<ShoppingBag size={20} />} text="Purchases" />
+          <SidebarItem icon={<ShoppingBag size={20} />} text="Αγορές" route='/purchases' />
         </Link>
         <Link to="/sales">
-          <SidebarItem icon={<Coins size={20} />} text="Sales" />
+          <SidebarItem icon={<Coins size={20} />} text="Πωλήσεις" route='/sales' />
         </Link>
         <Link to="/store">
-          <SidebarItem icon={<Store size={20} />} text="Store"/>
+          <SidebarItem icon={<Store size={20} />} text="Αποθήκη" route='/store'/>
         </Link>
         <Link to="/contacts" replace={true}>
-          <SidebarItem icon={<Contact size={20} />} text="Contacts" />
+          <SidebarItem icon={<Contact size={20} />} text="Επαφές" route='/contacts' />
         </Link>
         <Link to="/people">
-          <SidebarItem icon={<Users size={20} />} text="People" />
+          <SidebarItem icon={<Users size={20} />} text="Πρόσωπα" route='/people' />
         </Link>
         <Link to="/reports">
-          <SidebarItem icon={<File size={20} />} text="Reports"/>
+          <SidebarItem icon={<File size={20} />} text="Αναφορές" route='/reports'/>
         </Link>
         <Link to="/helpers">
-          <SidebarItem icon={<HelpCircle size={20} />} text="Helpers"/>
+          <SidebarItem icon={<HelpCircle size={20} />} text="Βοηθητικά" route='/helpers'/>
         </Link>
       </Sidebar>
       

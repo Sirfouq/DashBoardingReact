@@ -20,13 +20,13 @@ const TopBar = () => {
 
   return (
     
-    <div className="fixed top-0 left-0 right-0 z-10 "> {/* Inline style to offset the TopBar from the Sidebar */}
-    <nav className="bg-indigo-500 bg-opacity-60 text-white text-sm h-12 flex justify-end items-center px-4 backdrop-blur-sm">
+    <div className="fixed top-0 left-0 right-0 z-10 ">
+    <nav className="bg-gradient-to-r from-indigo-50 to-indigo-200 bg-opacity-60 text-white text-sm h-12 flex justify-end items-center px-4 backdrop-blur-sm">
         
       
       <div className="flex items-center gap-4">
       {isDarkModeOn?
-        (<Sun size={20}/>):
+        (<Sun size={20} />):
         (<Moon size={20}/>)}
       <div className="h-6 w-px bg-white bg-opacity-50">
 
