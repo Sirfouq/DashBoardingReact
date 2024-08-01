@@ -5,7 +5,7 @@ interface BubbleMenuProps {
   userImage?: string; // Prop to pass user image URL
 }
 
-const BubbleMenu: FC<BubbleMenuProps> = ({ userImage }) => {
+const BubbleMenu = ({ userImage }:BubbleMenuProps ) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const toggleMenu = () => {
