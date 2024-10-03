@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext, ReactNode, FC } from 'react';
 import { MoreVertical } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { useTheme } from '@/contexts/ThemeContext';
 
 
 // Extend the shape of the context
@@ -21,11 +22,11 @@ interface SidebarProps {
     children: ReactNode;
 }
 
-const Sidebar: FC<SidebarProps> = ({ children }) => {
+const Sidebar = ({ children } : SidebarProps) => {
     const [expanded, setExpanded] = useState<boolean>(window.innerWidth > 768);
     const location = useLocation(); 
     const [activeItem, setActiveItem] = useState<string>(location.pathname); 
-    // const [showFooter,setshowFooter] = useState<boolean>(true);
+    const {isDarkMode} = useTheme();
     const [isMenuVisible,setisMenuVisible] = useState<boolean>(false);
 
     const updateActiveItem = (routename: string) => {
@@ -44,15 +45,17 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
     }, []);
 
     return (
+      <SidebarContext.Provider value={{ expanded, activeItem, updateActiveItem }}>
         <aside className="h-screen overflow-y-auto">
-          <nav className="h-full flex flex-col bg-indigo-50 border-r shadow-sm">
-            <SidebarContext.Provider value={{ expanded, activeItem, updateActiveItem }}>
+          <nav className={`h-full flex flex-col ${isDarkMode?'bg-gray-900':'bg-indigo-50'} border-r shadow-sm`}>
+            
               <ul className="flex-1 px-3 pt-4 pb-8 mt-8 ">{children}</ul>
-            </SidebarContext.Provider>
             
           </nav>
         </aside>
-      );
+      </SidebarContext.Provider>
+    );
+
     };
 
 interface SidebarItemProps {
@@ -63,17 +66,18 @@ interface SidebarItemProps {
 
 }
 
-export const SidebarItem: FC<SidebarItemProps> = ({ icon, text, alert,route }) => {
+export const SidebarItem = ({ icon, text, alert,route } :SidebarItemProps) => {
     const { expanded, activeItem, updateActiveItem } = useContext(SidebarContext);
+    const isDarkMode = useTheme()
     const isActive = route === '/'
     ? location.pathname === route
     : location.pathname.startsWith(route);
   
     return (
       <li
-        className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${
-          isActive ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800" : "hover:bg-indigo-200 text-gray-600"
-        }`}
+      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${
+        isActive ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800" : `hover:bg-indigo-200 ${isDarkMode ? 'hover:text-white' : 'hover:text-gray-800'}`
+      }`}
         onClick={() => updateActiveItem(route)}
       >
         {icon}

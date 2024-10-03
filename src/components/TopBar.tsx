@@ -1,11 +1,13 @@
+import { useTheme } from "../contexts/ThemeContext";
 import { ChevronDown, Moon, Phone, Search, SearchCheck, Sun, User } from "lucide-react";
 import { useState } from "react";
 
 const TopBar = () => {
   const [isMenuVisible,setIsMenuVisible] = useState(false);
-  const [isDarkModeOn,setDarkModeOn] = useState(false);
+  const {isDarkMode,toggleTheme} = useTheme();
   const [storeData, setStoreData] = useState(null); // State to store fetched data
-  const sidebarWidth = "16rem"; 
+  
+  
 
   // const handleStoreRequest = async () => {
   //   try {
@@ -21,13 +23,15 @@ const TopBar = () => {
   return (
     
     <div className="fixed top-0 left-0 right-0 z-10 ">
-    <nav className="bg-gradient-to-r from-indigo-50 to-indigo-200 bg-opacity-60 text-white text-sm h-12 flex justify-end items-center px-4 backdrop-blur-sm">
+    <nav className={` ${isDarkMode? 'bg-slate-900':'bg-gradient-to-r from-indigo-50 to-indigo-200 bg-opacity-60'} text-white text-sm h-12 flex justify-end items-center px-4 backdrop-blur-sm`}>
         
       
       <div className="flex items-center gap-4">
-      {isDarkModeOn?
+      <button onClick={toggleTheme}>
+      {isDarkMode?
         (<Sun size={20} />):
         (<Moon size={20}/>)}
+      </button>
       <div className="h-6 w-px bg-white bg-opacity-50">
 
       </div>

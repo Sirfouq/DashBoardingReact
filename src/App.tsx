@@ -8,6 +8,7 @@ import { AuthProvider, useAuth } from './contexts/AuthProvider'; // Make sure th
 import BottomBar from './components/BottomBar';
 import HomePage from './pages/HomePage';
 import DataTableVIew from './tables/peopleTableView';
+import { useTheme,ThemeProvider } from './contexts/ThemeContext';
 
 const AuthenticatedApp = () => {
   const { isLoggedIn, login, logout } = useAuth();
@@ -48,7 +49,6 @@ const AuthenticatedApp = () => {
            )} 
         </Routes>
       </div>
-      {/* <BottomBar /> */}
     </div>
     
   );
@@ -58,7 +58,9 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ThemeProvider>
         <AuthenticatedApp />
+        </ThemeProvider>
       </BrowserRouter>
     </AuthProvider>
   );

@@ -1,75 +1,35 @@
-// RevenueCard.tsx
+import { useTheme } from '@/contexts/ThemeContext';
 import { ChevronRight } from 'lucide-react';
 import React from 'react';
+
 
 interface CardProps {
   title: string;
   icon: React.ReactNode;
-  hover_descr: string; // Make sure to import ReactNode from 'react' if not already done
+  hover_descr: string;
 }
 
-const CardComp = ({ title, icon,hover_descr }: CardProps) => {
+const CardComp = ({ title, icon, hover_descr }: CardProps) => {
+  const { isDarkMode } = useTheme();
+  const cardClass = isDarkMode ? 'card-hover-dark' : 'card-hover';
+  const hoverContentClass = isDarkMode ? 'hover-content-dark' : 'hover-content';
+
   return (
-    <>
-      <style>
-        {`
-          .card-hover {
-            position: relative;
-            
-            transition: transform 0.3s ease-in-out;
-          }
-          .card-hover::after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0);
-            transition: background-color 0.3s ease-in-out;
-          }
-          .card-hover:hover {
-            transform: scale(1.05);
-          }
-          .card-hover:hover::after {
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-          }
-          .hover-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            z-index: 20; /* Above the ::after pseudo-element */
-            display: flex;
-            align-items: center;
-            gap: 12px; /* Space between text and arrow */
-          }
-          .card-hover:hover .hover-content {
-            opacity: 1; /* Make text and arrow visible on hover */
-          }
-        `}
-      </style>
-      <div className="rounded-lg shadow-md p-6 max-w-lg min-w-max card-hover relative">
-        <div className="flex justify-between items-center gap-4 mb-4"> 
-          <div className="icon-container flex items-center justify-center"> 
-            {icon}
-          </div>
-          <div className="text-2xl font-mono font-bold text-gray-800">{title}</div>
+    <div className={`rounded-lg shadow-md p-6 max-w-lg min-w-max ${cardClass} relative`}>
+      <div className="flex justify-between items-center gap-4 mb-4">
+        <div className="icon-container flex items-center justify-center">
+          {icon}
         </div>
-        <div className="mt-6 bg-gray-100 rounded-md h-24 flex items-center justify-center">
-          {/* Additional content goes here */}
-        </div>
-        <div className="hover-content text-white font-serif">
-          <span>{hover_descr}</span>
-          <ChevronRight size={24} className="text-white" />
-        </div>
+        <div className={`text-2xl font-mono font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{title}</div>
       </div>
-    </>
+      <div className={`mt-6 rounded-md h-24 flex items-center justify-center ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+       
+      </div>
+      <div className={`${hoverContentClass} font-serif`}>
+        <span>{hover_descr}</span>
+        <ChevronRight size={24} className="text-white" />
+      </div>
+    </div>
   );
 };
 

@@ -5,6 +5,7 @@ import { Coins, Contact, File, HelpCircle, Home, Settings, ShoppingBag, Store, U
 import { Link } from 'react-router-dom';
 import BottomBar from '../components/BottomBar';
 import TopBar from '../components/TopBar';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -13,6 +14,7 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }:MainLayoutProps) => {
   const bottomBarHeight = 'h-64'; // The height of your BottomBar
+  const {isDarkMode} = useTheme();
 
   return (
     <>
@@ -50,22 +52,19 @@ const MainLayout = ({ children }:MainLayoutProps) => {
         </Link>
       </Sidebar>
       
-      
-       {/* <div className='flex flex-col flex-1 backdrop-filter backdrop-blur-sm'> */}
        
-        <TopBar />         
-          <main className='flex-1 overflow-auto pb-4 pt-12 mb-8 bg-white'> {/* Padding-bottom added here */}
+      <TopBar />         
+          <main className={`flex-1 overflow-auto pb-4 pt-12 mb-8 ${isDarkMode ? 'bg-black':'bg-white'}`}> 
             {children}
           </main>
           
-          <BottomBar />
+      <BottomBar />
   
 
           
           
        
       </div>
-    {/* </div> */}
      
      </>
   );

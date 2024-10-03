@@ -3,7 +3,7 @@ import axios from 'axios';
 
 interface ApiResponse {
   logged_in: boolean;
-  data: any; // 
+  data: any; 
 }
 
 // Update the return type to Promise<ApiResponse> to reflect that it always returns a promise.
