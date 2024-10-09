@@ -29,12 +29,7 @@ function StoreTableView() {
       try {
         const response = await StoreRequest(); // Assuming ApiResponse includes a 'data' field that holds the stores data
         // Adjust the mapping based on your actual data structure
-        const storesData = response.products.map((item: {
-          title: string;
-          description: string;
-          price: number;
-          stock: number;
-        }) => ({
+        const storesData = response.products.map((item:Product) => ({
           title: item.title,
           description: item.description,
           price: item.price,

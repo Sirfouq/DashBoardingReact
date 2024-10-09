@@ -14,12 +14,7 @@ function DataTableVIew() {
     const fetchUsers = async () => {
       try {
         const response = await get_companies();
-        const usersData = response.users.map((item: { 
-          firstName: string, 
-          lastName: string, 
-          age: number, 
-          email: string 
-        }) => ({
+        const usersData = response.users.map((item: User) => ({
           firstName: item.firstName,
           lastName: item.lastName,
           age: item.age,
