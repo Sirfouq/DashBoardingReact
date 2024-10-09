@@ -44,12 +44,6 @@ const MainLayout = ({ children }:MainLayoutProps) => {
         <Link to="/people">
           <SidebarItem icon={<Users size={20} />} text="Πρόσωπα" route='/people' />
         </Link>
-        <Link to="/reports">
-          <SidebarItem icon={<File size={20} />} text="Αναφορές" route='/reports'/>
-        </Link>
-        <Link to="/helpers">
-          <SidebarItem icon={<HelpCircle size={20} />} text="Βοηθητικά" route='/helpers'/>
-        </Link>
       </Sidebar>
       
        

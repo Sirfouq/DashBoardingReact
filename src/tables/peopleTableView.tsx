@@ -3,67 +3,71 @@ import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import { ColumnDef } from '@tanstack/react-table';
 import { get_companies } from '@/requests/api';
+import { Users } from 'lucide-react';
 
 function DataTableVIew() {
   // const [users, setUsers] = useState<Company[]>([]);
-  const [companies, setCompanies] = useState<Company[]>([]); // Initialize state to hold companies
+  const [users, setUsers] = useState<User[]>([]); // Initialize state to hold companies
   // Initialize state to hold your users
 
   useEffect(() => {
-    const fetchCompanies = async () => {
+    const fetchUsers = async () => {
       try {
         const response = await get_companies();
-        const companiesData = response.data.map((item: { 
-          Companies: Company, 
-          Companies_AddressBook: { Address: string } 
+        const usersData = response.users.map((item: { 
+          firstName: string, 
+          lastName: string, 
+          age: number, 
+          email: string 
         }) => ({
-          ...item.Companies, 
-          Address: item.Companies_AddressBook.Address 
+          firstName: item.firstName,
+          lastName: item.lastName,
+          age: item.age,
+          email: item.email
         }));
-        setCompanies(companiesData); 
+        setUsers(usersData); 
       } catch (error) {
-        console.error('Error fetching companies:', error);
+        console.error('Error fetching users:', error);
+      }
         
       }
-    };
   
-    fetchCompanies();
+    fetchUsers();
   }, []);  // Empty dependency array means this effect will only run once on mount
  // Empty dependency array means this effect will only run once on mount
 
- type Company = {
-  C_Code: string;
-  C_Title: string;
-  VatNo: string;
-  Address: string; // Add the Address field
+ type User = {
+  firstName: string;
+  lastName: string;
+  age: number;
+  email: string; // Add the Address field
   // Include other fields as needed
 };
   
   // Define columns based on the company data structure
-  const columns: ColumnDef<Company>[] = [
+  const columns: ColumnDef<User>[] = [
+    
     {
-      accessorKey: 'C_Code', // Accessor matches the key from company data
-      header: 'Company Code', // Column header
-      // You can define other column properties as needed, like cell rendering, sorting, etc.
+      accessorKey: 'firstName',
+      header: 'First Name',
     },
     {
-      accessorKey: 'C_Title',
-      header: 'Company Title',
+      accessorKey: 'lastName',
+      header: 'Last Name',
     },
     {
-      accessorKey: 'VatNo',
-      header: 'VAT Number',
+      accessorKey: 'age', // Make sure this matches the key you used when setting the data
+      header: 'Age',
     },
     {
-      accessorKey: 'Address', // Make sure this matches the key you used when setting the data
-      header: 'Address',
-    },
+      accessorKey: 'email',
+      header: 'Email',}
     // Add more columns as needed
   ];
 
   return (
     <div className="container mx-auto py-10 overflow-x-auto"> {/* horizontal scroll for wide tables */}
-    <DataTable columns={columns} data={companies} />
+    <DataTable columns={columns} data={users} />
   </div>
   );
 }

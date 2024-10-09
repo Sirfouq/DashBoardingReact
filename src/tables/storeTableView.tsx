@@ -14,16 +14,33 @@ type Store = {
   // Add more fields as needed from your Store data structure
 };
 
+interface Product {
+  title: string;
+  description: string;
+  price: number;
+  stock: number;
+}
+
 function StoreTableView() {
-  const [stores, setStores] = useState<Store[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchStores = async () => {
       try {
         const response = await StoreRequest(); // Assuming ApiResponse includes a 'data' field that holds the stores data
         // Adjust the mapping based on your actual data structure
-        const storesData = response.data.map((item: { Store: Store }) => item.Store);
-        setStores(storesData);
+        const storesData = response.products.map((item: {
+          title: string;
+          description: string;
+          price: number;
+          stock: number;
+        }) => ({
+          title: item.title,
+          description: item.description,
+          price: item.price,
+          stock: item.stock,
+        }));
+        setProducts(storesData);
       } catch (error) {
         console.error('Error fetching stores:', error);
       }
@@ -32,16 +49,17 @@ function StoreTableView() {
     fetchStores();
   }, []);
 
-  const columns: ColumnDef<Store>[] = [
-    { accessorKey: 'S_Code', header: 'Store Code' },
-    { accessorKey: 'S_Descr', header: 'Description' },
-    { accessorKey: 'S_Barcode', header: 'Barcode' },
-    // Define more columns based on the properties of your Store type
+  const columns: ColumnDef<Product>[] = [
+    { accessorKey: 'title', header: 'Title' },
+    { accessorKey: 'description', header: 'Description' },
+    { accessorKey: 'price', header: 'Price' },
+    { accessorKey: 'stock', header: 'Stock' },
+    // Define more columns based on the properties of your Product type
   ];
 
   return (
     <div className="container mx-auto py-10 overflow-x-auto">
-      <DataTable columns={columns} data={stores} />
+      <DataTable columns={columns} data={products} />
     </div>
   );
 }
