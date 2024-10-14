@@ -1,34 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { DataTable } from "./data-table";
-import { 
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  useReactTable,
-  VisibilityState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel 
-} from '@tanstack/react-table';
+import { useDataTable, DataTableProvider } from './data_table_context';
+import { ColumnDef } from '@tanstack/react-table';
 import { get_companies } from '@/requests/api';
 import { Input } from '@/components/ui/input';
 
+type User = {
+  firstName: string;
+  lastName: string;
+  age: number;
+  email: string;
+};
 
-function DataTableVIew() {
-  // const [users, setUsers] = useState<Company[]>([]);
-  const [users, setUsers] = useState<User[]>([]); // Initialize state to hold users
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
- // Initialize state to hold companies
-  // Initialize state to hold your users
+function DataTableContent() {
+  const { table, setData } = useDataTable<User>();
 
   useEffect(() => {
     let ignore = false;
     const fetchUsers = async () => {
       try {
-        if(!ignore){
+        if (!ignore) {
           const response = await get_companies();
           const usersData = response.users.map((item: User) => ({
             firstName: item.firstName,
@@ -36,30 +27,38 @@ function DataTableVIew() {
             age: item.age,
             email: item.email
           }));
-          setUsers(usersData); 
+          setData(usersData);
         }
       } catch (error) {
         console.error('Error fetching users:', error);
-      }  
-      };
-  
+        // Here you might want to set an error state or show an error message
+      }
+    };
+
     fetchUsers();
     return () => { ignore = true }
-  }, []);  
+  }, [setData]);
 
- type User = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  email: string; // Add the Address field
-  // Include other fields as needed
-};
+  const input = (
+    <Input
+      placeholder="Αναζήτηση..."
+      value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+      onChange={(event) =>
+        table.getColumn("email")?.setFilterValue(event.target.value)
+      }
+      className="max-w-sm"
+    />
+  );
 
+  return (
+    <div className="container mx-auto py-10 overflow-x-auto">
+      <DataTable input={input} />
+    </div>
+  );
+}
 
-  
-  // Define columns based on the company data structure
+function DataTableView() {
   const columns: ColumnDef<User>[] = [
-    
     {
       accessorKey: 'firstName',
       header: 'First Name',
@@ -69,49 +68,20 @@ function DataTableVIew() {
       header: 'Last Name',
     },
     {
-      accessorKey: 'age', // Make sure this matches the key you used when setting the data
+      accessorKey: 'age',
       header: 'Age',
     },
     {
       accessorKey: 'email',
-      header: 'Email',}
-    // Add more columns as needed
+      header: 'Email',
+    }
   ];
 
-  const table = useReactTable({
-    data: users,
-    columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  });
-
-   const input = (
-      <Input
-          placeholder="Αναζήτηση..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        /> 
-   )
-  
-
   return (
-    <div className="container mx-auto py-10 overflow-x-auto"> {/* horizontal scroll for wide tables */}
-    <DataTable columns={columns} data={users} table={table} input={input}  />
-  </div>
+    <DataTableProvider columns={columns}>
+      <DataTableContent />
+    </DataTableProvider>
   );
 }
 
-export default DataTableVIew;
+export default DataTableView;

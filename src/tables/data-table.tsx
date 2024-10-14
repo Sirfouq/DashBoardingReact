@@ -2,30 +2,7 @@
 import { DataTablePagination } from './pagination';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  flexRender,
-  VisibilityState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-  Table as ReactTable // Import the Table type as ReactTable
-} from "@tanstack/react-table"
-
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-  } from "@/components/ui/pagination"
+import { useDataTable } from '@/tables/data_table_context';
 
 import {
   Table,
@@ -44,23 +21,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import React from 'react';
+import { flexRender } from '@tanstack/react-table';
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface DataTableProps<TData> {
   input: React.ReactNode
-  table: ReactTable<TData> // Use ReactTable type here
+   // Use ReactTable type here
 }
 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
+export function DataTable<TData>({
   input,
-  table
-}: DataTableProps<TData, TValue>) {
-  
-
- 
+}: DataTableProps<TData>) {
+  const  {table} = useDataTable();
 
   return (
     <div>
@@ -141,7 +112,7 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>

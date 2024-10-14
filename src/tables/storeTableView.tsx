@@ -13,68 +13,43 @@ import {
 } from '@tanstack/react-table';
 import { StoreRequest } from '@/requests/api'; // Adjust the import path as needed
 import { Input } from '@/components/ui/input';
+import { DataTableProvider, useDataTable } from './data_table_context';
 
-function StoreTableView() {
 
-  interface Product {
-    title: string;
-    description: string;
-    price: number;
-    stock: number;
-  }
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+interface Product {
+  title: string;
+  description: string;
+  price: number;
+  stock: number;
+}
 
-  useEffect(() => {
-    let ignore = false;
-    const fetchStores = async () => {
-      try {
-        const response = await StoreRequest(); // Assuming ApiResponse includes a 'data' field that holds the stores data
-        if (!ignore) {
-          const storesData = response.products.map((item: Product) => ({
-            title: item.title,
-            description: item.description,
-            price: item.price,
-            stock: item.stock,
-          }));
-          setProducts(storesData);
-        }
-      } catch (error) {
-        console.error('Error fetching stores:', error);
+const  StoreTableContent = ()=> {
+
+const { table, setData } = useDataTable<Product>();
+
+useEffect(() => {
+  let ignore = false;
+  const fetchStores = async () => {
+    try {
+      const response = await StoreRequest();
+      if (!ignore) {
+        const storesData = response.products.map((item: Product) => ({
+          title: item.title,
+          description: item.description,
+          price: item.price,
+          stock: item.stock,
+        }));
+        setData(storesData);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching stores:', error);
+    }
+  };
 
-    fetchStores();
-    return () => { ignore = true }
-  }, []);
-
-  const columns: ColumnDef<Product>[] = [
-    { accessorKey: 'title', header: 'Title' },
-    { accessorKey: 'description', header: 'Description' },
-    { accessorKey: 'price', header: 'Price' },
-    { accessorKey: 'stock', header: 'Stock' },
-    // Define more columns based on the properties of your Product type
-  ];
-
-  const table = useReactTable({
-    data: products,
-    columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  });
+  fetchStores();
+  return () => { ignore = true }
+}, [setData]); // Add setData to the dependency array
 
   const input = (
     <Input
@@ -86,12 +61,28 @@ function StoreTableView() {
       className="max-w-sm"
     />
   );
-
-  return (
+  return(
     <div className="container mx-auto py-10 overflow-x-auto">
-      <DataTable columns={columns} data={products} table={table} input={input} />
+      <DataTable input={input} />
     </div>
+  )
+}
+
+  const StoreTableView = ()=>{
+    const columns: ColumnDef<Product>[] = [
+      { accessorKey: 'title', header: 'Title' },
+      { accessorKey: 'description', header: 'Description' },
+      { accessorKey: 'price', header: 'Price' },
+      { accessorKey: 'stock', header: 'Stock' },
+      // Define more columns based on the properties of your Product type
+    ];
+  
+  return (
+    <DataTableProvider<Product> columns={columns}>
+      <StoreTableContent />
+    </DataTableProvider>
   );
 }
+
 
 export default StoreTableView;
